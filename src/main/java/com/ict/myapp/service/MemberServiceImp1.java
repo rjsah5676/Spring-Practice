@@ -20,4 +20,13 @@ public class MemberServiceImp1 implements MemberService {
 	public MemberVO loginOk(String userid, String userpwd) {
 		return dao.loginOk(userid, userpwd);
 	}
+	@Override
+	public MemberVO memberSelect(String userid) {
+		// TODO Auto-generated method stub
+		return dao.memberSelect(userid);
+	}
+	@Override
+	public int memberUpdate(MemberVO vo) {
+		return dao.memberUpdate(vo);
+	}
 }

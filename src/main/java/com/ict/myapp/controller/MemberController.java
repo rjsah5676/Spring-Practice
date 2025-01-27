@@ -34,8 +34,6 @@ public class MemberController {
 		} catch(Exception e) {
 			result=0;
 		}
-		System.out.println(vo.toString());
-		System.out.println(result);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("result",result);
 		mav.setViewName("member/memberOkResult");
@@ -69,9 +67,21 @@ public class MemberController {
 	
 	@GetMapping("/member/logout")
 	public String logout(HttpSession session) {
-		System.out.println("!!");
 		session.invalidate();
 		return "redirect:/";
 	}
-	
+	@GetMapping("/member/edit")
+	public ModelAndView edit(HttpSession session) {
+		String userid = (String)session.getAttribute("logid");
+		MemberVO vo = service.memberSelect(userid);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("vo",vo);
+		mav.setViewName("member/memberEdit");
+		return mav;
+	}
+	@PostMapping("/member/editOk")
+	public String editOk(MemberVO vo) {
+		int result = service.memberUpdate(vo);
+		return "redirect:edit";
+	}
 }

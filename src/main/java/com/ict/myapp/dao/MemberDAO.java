@@ -14,7 +14,9 @@ public interface MemberDAO {
 	//회원등록
 	
 	//회원수정
+	public MemberVO memberSelect(String userid);
 	
+	public int memberUpdate(MemberVO vo);
 	//회원탈퇴
 	
 	//로그인

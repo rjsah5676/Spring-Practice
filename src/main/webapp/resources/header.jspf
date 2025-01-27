@@ -21,8 +21,8 @@
 		</c:if>
 		<c:if test="${logStatus=='Y'}">
 			<div><a href="${pageContext.request.contextPath }/member/logout">(${logName})로그아웃</a></div>
+			<div><a href="${pageContext.request.contextPath }/member/edit">회원정보수정</a></div>
 		</c:if>
-		<div><a href="${pageContext.request.contextPath }/">회원정보수정</a></div>
 		<div><a href="${pageContext.request.contextPath }/">게시판</a></div>
 		<div><a href="${pageContext.request.contextPath }/">자료실</a></div>
 	</div>

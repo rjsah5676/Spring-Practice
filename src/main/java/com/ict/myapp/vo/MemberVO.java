@@ -60,7 +60,12 @@ public class MemberVO {
 	public String getTel() {
 		return tel1 + "-" + tel2 + "-" + tel3;
 	}
-	
+	public void setTel(String tel) {
+		String arr[] = tel.split("-");
+		this.tel1=arr[0];
+		this.tel2=arr[1];
+		this.tel3=arr[2];
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [userid=" + userid + ", userpwd=" + userpwd + ", username=" + username + ", email=" + email

@@ -11,4 +11,10 @@
 	<select id="loginOk" resultType="com.ict.myapp.vo.MemberVO">
   		select userid, username from member where userid=#{param1} and userpwd=#{param2} 
   	</select>
+  	<select id="memberSelect" resultType="com.ict.myapp.vo.MemberVO">
+  		select userid, username, email,tel,zipcode,addr,addrdetail,hobby from member where userid=#{param1}
+  	</select>
+  	<update id="memberUpdate">
+  		update member set email=#{email}, tel=#{tel}, zipcode=#{zipcode}, addr=#{addr}, addrdetail=#{addrDetail},hobby=#{hobby} where userid=#{userid} and userpwd=#{userpwd}
+  	</update>
 </mapper>  

@@ -96,61 +96,64 @@
                 }
             }).open();
   		} 	
+        function formCheck() {
+        	if(document.getElementById("userpwd").value == "") {
+        		alert("비밀번호를 입력해주세요");
+        		return false;
+        	}
+        	return true;
+        }
     </script>
 <body>
     <div class="container">
-        <h1>회원가입 폼</h1>
-        <form class="first-form" method="post" action="formOk" id="frm">
+        <h1>회원정보수정 폼</h1>
+        <form class="first-form" method="post" action="editOk" id="frm" onsubmit="return formCheck()">
             <div class="form-col">
-                <div>아이디</div><input type="text" name="userid"></input>
-                <button>아이디중복검사</button>
+                <div>아이디</div><input type="text" name="userid" value="${vo.userid}" readonly/>
             </div>
             <div class="form-col">
-                <div>비밀번호</div><input type="password" name="userpwd"></input>
+                <div>비밀번호</div><input type="password" name="userpwd" id="userpwd"/>
             </div>
             <div class="form-col">
-                <div>비밀번호확인</div><input type="password" name="userpwchk"></input>
-            </div>
-            <div class="form-col">
-                <div>이름</div><input type="text" name="username"></input>
+                <div>이름</div><input type="text" name="username" value="${vo.username }" readonly/>
             </div>
             <div class="form-col">
                 <div>연락처</div>
                 <select name="tel1">
-                    <option value="010">010</option>
-                    <option value="02">02</option>
-                    <option value="070">070</option>
+                    <option value="010"><c:if test="${vo.tel1=='010'}">010</c:if></option>
+                    <option value="02"><c:if test="${vo.tel1=='02'}">02</c:if></option>
+                    <option value="070"><c:if test="${vo.tel1=='070'}">070</c:if></option>
                 </select>
                 - 
-                <input class="call-detail" type="text" name="tel2"></input>
+                <input class="call-detail" type="text" name="tel2" value="${vo.tel2 }"/>
                 - 
-                <input class="call-detail" type="text" name="tel3"></input>
+                <input class="call-detail" type="text" name="tel3" value="${vo.tel3 }"/>
             </div>
             <div class="form-col">
-                <div>이메일</div><input type="text" name="email"></input>
+                <div>이메일</div><input type="text" name="email" value="${vo.email }"/>
             </div>
             <div class="form-col">
-                <div>우편번호</div><input type="text" id="zipcode" name="zipcode"></input>
+                <div>우편번호</div><input type="text" id="zipcode" name="zipcode" value="${vo.zipcode }"/>
                 <input type="button" style="height:25px;" value="우편번호찾기" onclick="daumPostCodeSearch()"/>
             </div>
             <div class="form-col">
-                <div>주소</div><input id="addr" type="text" name="addr"></input>
+                <div>주소</div><input id="addr" type="text" name="addr" value="${vo.addr }"/>
             </div>
             <div class="form-col">
-                <div>상세주소</div><input id="addrDetail" type="text" name="addrDetail"></input>
+                <div>상세주소</div><input id="addrDetail" type="text" name="addrDetail" value="${vo.addrDetail }"/>
             </div>
             <div class="form-col">
                 <div>취미</div>
-                <input type="checkbox" name="hobby" value="야구">야구
-                <input type="checkbox" name="hobby" value="바이크">바이크
-                <input type="checkbox" name="hobby" value="등산">등산
-                <input type="checkbox" name="hobby" value="쇼핑">쇼핑
-                <input type="checkbox" name="hobby" value="자전거">자전거
-                <input type="checkbox" name="hobby" value="걷기">걷기
-                <input type="checkbox" name="hobby" value="영화감상">영화감상
+                <input type="checkbox" name="hobby" value="야구"<c:forTokens delims="," var="token" items="${vo.hobby }"><c:if test="${token=='야구' }">checked</c:if></c:forTokens>/>야구
+                <input type="checkbox" name="hobby" value="바이크"<c:forTokens delims="," var="token" items="${vo.hobby }"><c:if test="${token=='바이크' }">checked</c:if></c:forTokens>/>바이크
+ 				<input type="checkbox" name="hobby" value="등산"<c:forTokens delims="," var="token" items="${vo.hobby }"><c:if test="${token=='등산' }">checked</c:if></c:forTokens>/>등산
+                <input type="checkbox" name="hobby" value="쇼핑"<c:forTokens delims="," var="token" items="${vo.hobby }"><c:if test="${token=='쇼핑' }">checked</c:if></c:forTokens>/>쇼핑
+                <input type="checkbox" name="hobby" value="자전거"<c:forTokens delims="," var="token" items="${vo.hobby }"><c:if test="${token=='자전거' }">checked</c:if></c:forTokens>/>자전거
+                <input type="checkbox" name="hobby" value="걷기"<c:forTokens delims="," var="token" items="${vo.hobby }"><c:if test="${token=='걷기' }">checked</c:if></c:forTokens>/>걷기
+                <input type="checkbox" name="hobby" value="영화감상"<c:forTokens delims="," var="token" items="${vo.hobby }"><c:if test="${token=='영화감상' }">checked</c:if></c:forTokens>/>영화감상
             </div>
             <div class="form-submit">
-                <input type="submit" value="회원가입하기"/>
+                <input type="submit" value="회원정보수정"/>
             </div>
         </form>
     </div>
