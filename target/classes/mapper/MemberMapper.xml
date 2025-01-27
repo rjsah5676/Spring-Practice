@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ict.myapp.dao.MemberDAO">
+	<insert id="memberInsert">
+		insert into member(userid,userpwd,username,tel,email,zipcode,addr,addrdetail,hobby,writedate)
+		values(#{userid},#{userpwd},#{username},#{tel},#{email},#{zipcode},#{addr},#{addrDetail},#{hobby},'2024-01-01')
+	</insert>
+	<select id="loginOk" resultType="com.ict.myapp.vo.MemberVO">
+  		select userid, username from member where userid=#{param1} and userpwd=#{param2} 
+  	</select>
+</mapper>  
