@@ -20,7 +20,7 @@
             margin-top:10px;
         }
         .form-col > input {
-            height:15px;
+            height:22px;
         }
         .form-col > button {
             height:25px;

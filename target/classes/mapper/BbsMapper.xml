@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ict.myapp.dao.BbsDAO">
+	<insert id="bbsInsert">
+		insert into bbs(subject,content,userid,ip) values(#{subject},#{content},#{userid},#{ip})
+	</insert>
+	<select id="bbsTotalRecord" resultType="int">
+		select count(news_no) from bbs
+	</select>
+	<select id="bbsSelect">
+		select news_no,subject,userid, hit, writedate from bbs order by news_no desc limit ${onePageRecord} offset ${offset}
+	</select>
+</mapper>
