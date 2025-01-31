@@ -1,0 +1,4 @@
+1. root-context.xml bean추가
+2. pom.xml 디펜던시 추가
+3. src/main/resources -> mybatis-config.xml 추가
+4. web.xml  -> servlet에 root-context.xml 추가
