@@ -6,12 +6,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.myapp.service.MemberService;
 import com.ict.myapp.vo.MemberVO;
 
+import lombok.extern.slf4j.Slf4j;
+
+
 @Controller
+@Slf4j
 public class MemberController {
 	
 	
@@ -83,5 +88,12 @@ public class MemberController {
 	public String editOk(MemberVO vo) {
 		int result = service.memberUpdate(vo);
 		return "redirect:edit";
+	}
+	
+	@GetMapping("/member/idDuplicate")
+	@ResponseBody
+	public String idDuplicate(String userid) {
+		log.info("userid");
+		return Integer.toString(service.idDuplicate(userid));
 	}
 }

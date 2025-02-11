@@ -29,4 +29,8 @@ public class MemberServiceImp1 implements MemberService {
 	public int memberUpdate(MemberVO vo) {
 		return dao.memberUpdate(vo);
 	}
+	@Override
+	public int idDuplicate(String userid) {
+		return dao.idDuplicate(userid);
+	}
 }

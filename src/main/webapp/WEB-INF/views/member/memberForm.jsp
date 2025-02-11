@@ -96,14 +96,53 @@
                 }
             }).open();
   		} 	
+        function idDuplicate(){
+        	var userid = document.getElementById("userid").value;
+        	if(userid != "") {
+        		var xHttp = new XMLHttpRequest();
+        		var idChk = document.getElementById("idCheck");
+        		var idChkStat = document.getElementById("idCheckStatus");
+        		xHttp.onreadystatechange = function(){
+        			if(this.readyState==4 && this.status==200){
+        				if(this.responseText=="1") {
+        					idChk.style.color="red";
+        					idChk.innerHTML = "사용불가능한 아이디";
+        					idChkStat.value="N";
+        				}
+        				else {
+        					idChk.style.color="green";
+        					idChk.innerHTML = "사용 가능한 아이디";
+        					idChkStat.value="Y";
+        				}
+        			}
+        		}
+        		
+        		xHttp.open("GET","/myapp/member/idDuplicate?userid="+userid,true);
+        		xHttp.send();
+        	} else{
+        		alert("아이디를 입력해주세요");
+        	}
+        }
+        function idDuplicateStatus(){
+        	document.getElementById("idCheckStatus").value = "N";
+			document.getElementById("idCheck").innerHTML = "";
+        }
+        function formCheck(){
+        	if(document.getElementById("idCheckStatus")=='N'){
+        		alert("아이디 중복검사를 하세요");
+        		return false;
+        	}
+        }
     </script>
 <body>
     <div class="container">
         <h1>회원가입 폼</h1>
-        <form class="first-form" method="post" action="formOk" id="frm">
+        <form class="first-form" method="post" action="formCheck()" id="frm">
             <div class="form-col">
-                <div>아이디</div><input type="text" name="userid"></input>
-                <button>아이디중복검사</button>
+                <div>아이디</div><input type="text" name="userid" id="userid" onkeyup="idDuplicateStatus()"></input>
+                <button type="button" onclick="idDuplicate()">아이디중복검사</button>
+                <span id="idCheck"></span>
+                <input type="hidden" id="idCheckStatus" value="N"/>
             </div>
             <div class="form-col">
                 <div>비밀번호</div><input type="password" name="userpwd"></input>

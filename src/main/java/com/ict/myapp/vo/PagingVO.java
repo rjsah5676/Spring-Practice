@@ -11,12 +11,20 @@ public class PagingVO {
 	private int totalPage;
 	private int offset;
 	
+	private int onePageCount=5;
+	private int startPageNum=1;
+	
+	private String searchWord;
+	private String searchKey;
+	
 	public int getNowPage() {
 		return nowPage;
 	}
 	public void setNowPage(int nowPage) {
 		this.nowPage = nowPage;
 		offset = (nowPage-1)*onePageRecord;
+		
+		startPageNum = (nowPage-1)/onePageCount*onePageCount+1;
 	}
 	public int getOnePageRecord() {
 		return onePageRecord;
@@ -43,5 +51,29 @@ public class PagingVO {
 	}
 	public void setOffset(int offset) {
 		this.offset = offset;
+	}
+	public int getOnePageCount() {
+		return onePageCount;
+	}
+	public void setOnePageCount(int onePageCount) {
+		this.onePageCount = onePageCount;
+	}
+	public int getStartPageNum() {
+		return startPageNum;
+	}
+	public void setStartPageNum(int startPageNum) {
+		this.startPageNum = startPageNum;
+	}
+	public String getSearchWord() {
+		return searchWord;
+	}
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+	public String getSearchKey() {
+		return searchKey;
+	}
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
 	}
 }

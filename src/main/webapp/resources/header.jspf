@@ -27,7 +27,8 @@
 			<div><a href="${pageContext.request.contextPath }/member/edit">회원정보수정</a></div>
 		</c:if>
 		<div><a href="${pageContext.request.contextPath }/bbs/list">게시판</a></div>
-		<div><a href="${pageContext.request.contextPath }/">자료실</a></div>
+		<div><a href="${pageContext.request.contextPath }/data/list">자료실</a></div>
+		<div><a href="${pageContext.request.contextPath }/ajax/home">AJAX</a></div>
 	</div>
 </body>
 </html>

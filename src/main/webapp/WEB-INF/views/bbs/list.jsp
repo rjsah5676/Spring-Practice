@@ -36,7 +36,14 @@
 		padding:30px;
 	}
 </style>
-
+<script>
+	function searchForm() {
+		if(document.getElementById("searchWord").value==""){
+			alert("입력해주세요");
+			return false;
+		}
+	}
+</script>
 <div class="container">
 	<h1>뉴스목록</h1>
 	
@@ -56,7 +63,7 @@
 		<li>등록일자</li>
 		<c:forEach var="vo" items="${list}">
             <li>${vo.news_no}</li>
-            <li>${vo.subject}</li>
+            <li><a href="${pageContext.request.contextPath}/bbs/view?news_no=${vo.news_no}">${vo.subject}</a></li>
             <li>${vo.userid}</li>
             <li>${vo.hit}</li>
             <li>${vo.writedate}</li>
@@ -64,19 +71,29 @@
 	</ul>
 	
 	  <ul class="pagination pagination">
-	  	<li><a href="#">Prev</a></li>
-	    <li><a href="#">1</a></li>
-	    <li><a href="#">2</a></li>
-	    <li><a href="#">3</a></li>
-	    <li><a href="#">4</a></li>
-	    <li><a href="#">5</a></li>
-	    <li><a href="#">Next</a></li>
+	  	<c:if test="${pVO.nowPage==1 }">
+	  		<li><a href="#">Prev</a></li>
+	  	</c:if>
+	  	<c:if test="${pVO.nowPage>1}">
+	  		<li><a href="${pageContext.request.contextPath}/bbs/list?nowPage=${pVO.nowPage-1}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>">Prev</a></li>
+	  	</c:if>
+	  	<c:forEach var="p" begin="${pVO.startPageNum }" end="${pVO.startPageNum+pVO.onePageCount-1}">
+	  		<c:if test="${p<=pVO.totalPage }">
+	  		<li><a href="${pageContext.request.contextPath}/bbs/list?nowPage=${p}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>">${p}</a></li>
+	  		</c:if>
+	  	</c:forEach>
+	  	<c:if test="${pVO.nowPage>=pVO.totalPage }">
+	    	<li><a href="#">Next</a></li>
+	    </c:if>
+	  	<c:if test="${pVO.nowPage<pVO.totalPage }">
+	    	<li><a href="${pageContext.request.contextPath}/bbs/list?nowPage=${pVO.nowPage+1}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>">Next</a></li>
+	    </c:if>
 	  </ul>
 	
 	<div class="search">
-		<form>
+		<form action="${pageContext.request.contextPath }/bbs/list" onSubmit="return searchForm()">
 			<select name="searchKey">
-				<option>제목</option>
+				<option value="subject">제목</option>
 				<option>작성자</option>
 				<option>글내용></option>
 			</select>
